@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ta-Do!</title>
+</head>
+<body>
+    <div class="header">
+        <p>What's on the agenda today?</p>
+        <div class="tool-bar">
+            <p id="new-project-button">New Project</p>
+            <p id="new-task-button">New Task</p>
+        </div>
+    </div>
+    <div class="projects">
+        <p>Your Projects</p>
+    </div>
+    <div class="task-viewport">
+        <p>Your Tasks</p>
+    </div>
+    <dialog id="taskDialog">
+        <form id="taskForm">
+            <label>
+              Title:
+              <input type="text" id="title" required>
+            </label><br><br>
+            
+            <label>
+              Description:
+              <textarea id="description" required></textarea>
+            </label><br><br>
+        
+            <label>
+              Due Date:
+              <input type="date" id="dueDate" required>
+            </label><br><br>
+        
+            <label>
+              Priority:
+              <select id="priority" required>
+                <option value="low">Low</option>
+                <option value="mid">Mid</option>
+                <option value="hi">High</option>
+              </select>
+            </label><br><br>
+
+            <label>
+                Project:
+                <select id="parentProject" required>
+                  /*dynamically display project options on form*/
+                </select>
+              </label><br><br>
+        
+            <button type="submit">Create Task</button>
+          </form>
+    </dialog>
+    <dialog id="projectDialog">
+        <form id="projectForm">
+            <label>
+              Title:
+              <input type="text" id="projectTitle" required>
+            </label>
+            <button type="submit">Create Project</button>
+          </form>
+    </dialog>
+</body>
+</html>
