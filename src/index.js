@@ -23,6 +23,7 @@ const projects = []
         e.preventDefault()
         const newTask = createTask(newTaskForm)
         addTaskToProject(newTask, projects)
+        renderTasks(taskViewport, projects, newTaskForm.querySelector("#parentProject").value)
         newTaskForm.reset()
         newTaskDialog.close()
     })

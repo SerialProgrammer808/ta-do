@@ -51,19 +51,24 @@
         })
     }
 
-    export function renderTasks(taskViewport, project) {
-        taskViewport.innerHTML = ""
-        project.projectArray.forEach((task) => {
-            const newTaskElement = document.createElement("div")
-            newTaskElement.classList.add("task")
-
-            newTaskElement.innerHTML = `${task.title}`
-
-            //add edit, delete event listeners, display
-
-            taskViewport.appendChild(newTaskElement)
-        })
-    }
+    export function renderTasks(taskViewport, projects, parentProjectTitle) {
+            taskViewport.innerHTML = ""
+    
+            projects.forEach((project) => {
+                if (project.title === parentProjectTitle) {
+                    project.projectArray.forEach((task) => {
+                        const newTaskElement = document.createElement("div")
+                        newTaskElement.classList.add("task")
+                        newTaskElement.innerHTML = `${task.title}`
+                        newTaskElement.style.fontWeight = "200"
+            
+                        //add edit, delete event listeners, display
+            
+                        taskViewport.appendChild(newTaskElement)
+                    })
+                }
+            });
+        }
 
     export function renderProjects(sidebar, projects, taskViewport) {
         sidebar.innerHTML = "<p>Your Projects</p>"
@@ -74,11 +79,12 @@
             projectElement.classList.add("project-item")
 
             projectElement.addEventListener("click", () => {
-                renderTasks(taskViewport, project)
+                renderTasks(taskViewport, projects, project.title)
                 updateTitle(project.title)
             })
 
-            projectElement.style.borderBottom = ("2px solid black")
+            projectElement.style.borderBottom = "2px solid black"
+            projectElement.style.fontWeight = "200"
             sidebar.appendChild(projectElement)
         });
     }
