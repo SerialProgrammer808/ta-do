@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ta-Do!</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div class="header">
+        <p>What's on the agenda today?</p>
+        <div class="tool-bar">
+            <p id="new-project-button">New Project</p>
+            <p id="new-task-button">New Task</p>
+        </div>
+    </div>
+    <div class="projects">
+        <p class="p-title">Your Projects</p>
+    </div>
+    <div class="tasks">
+        <p class="tasks-title">Your Tasks</p>
+        <div class="task-viewport">
+
+        </div>
+    </div>
+    <dialog id="taskDialog">
+        <form id="taskForm">
+            <p class="dialog-close-button">×</p>
+            <label>
+              Title: <span class="required">*</span>
+              <input type="text" id="title" required>
+            </label><br><br>
+            
+            <label>
+              Description: 
+              <textarea id="description" ></textarea>
+            </label><br><br>
+        
+            <label>
+              Due Date:
+              <input type="date" id="dueDate" >
+            </label><br><br>
+        
+            <label>
+              Priority:
+              <select id="priority" >
+                <option value=""></option>
+                <option value="low">Low</option>
+                <option value="mid">Mid</option>
+                <option value="hi">High</option>
+              </select>
+            </label><br><br>
+
+            <label>
+                Project: <span class="required">*</span>
+                <select id="parentProject" required>
+                  
+                </select>
+              </label><br><br>
+        
+            <button type="submit">Create Task</button>
+          </form>
+    </dialog>
+    <dialog id="projectDialog">
+        <form id="projectForm">
+          <p class="dialog-close-button">×</p>
+            <label>
+              Title: <span class="required">*</span>
+              <input type="text" id="projectTitle" required>
+            </label>
+            <button type="submit">Create Project</button>
+          </form>
+    </dialog>
+    <dialog id="taskDetailsDialog">
+      <div class="dialog-content"></div>
+    </dialog>
+</body>
+</html>
