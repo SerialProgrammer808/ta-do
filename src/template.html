@@ -16,29 +16,33 @@
     <div class="projects">
         <p>Your Projects</p>
     </div>
-    <div class="task-viewport">
-        <p>Your Tasks</p>
+    <div class="tasks">
+        <p class="tasks-title">Your Tasks</p>
+        <div class="task-viewport">
+
+        </div>
     </div>
     <dialog id="taskDialog">
         <form id="taskForm">
             <label>
-              Title:
+              Title: <span class="required">*</span>
               <input type="text" id="title" required>
             </label><br><br>
             
             <label>
-              Description:
-              <textarea id="description" required></textarea>
+              Description: 
+              <textarea id="description" ></textarea>
             </label><br><br>
         
             <label>
               Due Date:
-              <input type="date" id="dueDate" required>
+              <input type="date" id="dueDate" >
             </label><br><br>
         
             <label>
               Priority:
-              <select id="priority" required>
+              <select id="priority" >
+                <option value="low"></option>
                 <option value="low">Low</option>
                 <option value="mid">Mid</option>
                 <option value="hi">High</option>
@@ -46,9 +50,9 @@
             </label><br><br>
 
             <label>
-                Project:
+                Project: <span class="required">*</span>
                 <select id="parentProject" required>
-                  /*dynamically display project options on form*/
+                  
                 </select>
               </label><br><br>
         
@@ -58,7 +62,7 @@
     <dialog id="projectDialog">
         <form id="projectForm">
             <label>
-              Title:
+              Title: <span class="required">*</span>
               <input type="text" id="projectTitle" required>
             </label>
             <button type="submit">Create Project</button>

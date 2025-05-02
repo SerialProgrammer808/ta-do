@@ -63,3 +63,9 @@ dialog {
 #taskForm button:hover, #projectForm button:hover {
     background-color: rgb(159, 190, 129);
 }
+
+.required {
+    color: red;
+    font-weight: bold;
+  }
+  
