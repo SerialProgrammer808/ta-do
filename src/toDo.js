@@ -1,4 +1,4 @@
-import { deleteTask } from "."
+import { deleteTask, projects } from "."
 
 //code for project and task objects
     export function createTask(form) {
@@ -24,6 +24,8 @@ import { deleteTask } from "."
         projectArray.forEach((project) => {
             if (task.parentProject == project.title) {
                 project.projectArray.push(task)
+                //here
+                localStorage.setItem("projects", JSON.stringify(projects))
             }
         })
     }
@@ -167,6 +169,8 @@ import { deleteTask } from "."
                 e.stopPropagation();
                 const index = projects.indexOf(project)
                 projects.splice(index, 1)
+                //here
+                localStorage.setItem("projects", JSON.stringify(projects))
                 renderProjects(sidebar, projects, taskViewport)
                 renderTasks(taskViewport, projects, project.title)
                 wipeTitle()

@@ -4,8 +4,16 @@ import './forms.css';
 import {createTask, createProjectArray, lightDarkButton, renderProjects, addTaskToProject, updateProjectSelect, renderTasks, changeCursor, updateTitle} from "./toDo.js"
 
 //array of projects
-let projects = []
+export let projects = []
 
+if (localStorage.getItem("projects")) {
+    const rawProjects = JSON.parse(localStorage.getItem("projects"))
+
+    projects = rawProjects.map(project => ({
+        title: project.title,
+        projectArray: project.projectArray || []
+    }))
+}
 //js for task items
     const newTaskButton = document.getElementById("new-task-button")
     const newTaskDialog = document.querySelector("#taskDialog")
@@ -61,6 +69,8 @@ let projects = []
         
         if (!alreadyExists) {
             projects.push(newProjectObject)
+            //here
+            localStorage.setItem("projects", JSON.stringify(projects))
             newProjectForm.reset()
             newProjectDialog.close()
             renderProjects(sidebar, projects, taskViewport)
@@ -77,5 +87,9 @@ const taskViewport = document.querySelector(".task-viewport")
 export function deleteTask(project, task) {
     const index = project.projectArray.indexOf(task)
     project.projectArray.splice(index, 1)
+    //here
+    localStorage.setItem("projects", JSON.stringify(projects))
     renderTasks(taskViewport, projects, project.title)
 }
+
+renderProjects(sidebar, projects, taskViewport)
