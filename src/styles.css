@@ -88,6 +88,9 @@ body {
 
 .task {
     font-size: 20px;
+    font-weight: 200;
+    display: flex;
+    justify-content: space-between;
     margin: 20px;
     padding: 10px;
     border-radius: 15px;
@@ -99,3 +102,9 @@ body {
     min-width: 200px;
 }
 
+.project-delete-btn:hover, .task-delete-btn:hover {
+    background-color: rgb(128, 128, 128, 0.5);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50%;
+}

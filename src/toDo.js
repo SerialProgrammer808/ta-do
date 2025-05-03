@@ -31,7 +31,6 @@ import { deleteTask } from "."
     export function createProjectArray(form) {
         let projectArray = []
         const title = form.querySelector("#projectTitle").value;
-
         return {title, projectArray}
     }
 
@@ -48,6 +47,12 @@ import { deleteTask } from "."
         projectTitle.innerHTML 
         = `<p>Your Tasks > ${title} <p>`
         }
+    
+    function wipeTitle() {
+        const projectTitle = document.querySelector(".tasks-title")
+        projectTitle.innerHTML 
+        = `<p>Your Tasks<p>`
+    }
     
     export function changeCursor(item) {
         item.addEventListener("mouseenter", () => {
@@ -103,12 +108,6 @@ import { deleteTask } from "."
         })
     }
 
-    /*function deleteTask(project, task) {
-        const index = project.projectArray.indexOf(task)
-        project.projectArray.splice(index, 1)
-        renderTasks(taskViewport, projects, project.title)
-    }*/
-
     export function renderTasks(taskViewport, projects, parentProjectTitle) {
             taskViewport.innerHTML = ""
     
@@ -118,16 +117,12 @@ import { deleteTask } from "."
                         const newTaskElement = document.createElement("div")
                         newTaskElement.classList.add("task")
                         newTaskElement.innerHTML = `<p>${task.title}</p> <p class="task-delete-btn">x</p>`
-                        newTaskElement.style.fontWeight = "200"
-                        newTaskElement.style.display = "flex"
-                        newTaskElement.style.justifyContent = "space-between"
                         const taskDeleteButton = newTaskElement.querySelector(".task-delete-btn")
                         taskDeleteButton.addEventListener("click", (e) => {
                             e.stopPropagation();
                             deleteTask(project, task)
                         })
 
-                        //add edit, delete event listeners, display
                         changeCursor(newTaskElement)
                         changeSize(newTaskElement)
                         displayTaskDetails(newTaskElement, task)
@@ -142,9 +137,14 @@ import { deleteTask } from "."
         sidebar.innerHTML = "<p>Your Projects</p>"
 
         projects.forEach(project => {
-            const projectElement = document.createElement("p")
-            projectElement.textContent = project.title
+            const projectElement = document.createElement("div")
+            const projectDeleteButton = document.createElement("p")
+
+            projectElement.innerHTML = project.title
             projectElement.classList.add("project-item")
+
+            projectDeleteButton.textContent = "x"
+            projectDeleteButton.classList.add("project-delete-btn")
 
             projectElement.addEventListener("click", () => {
                 renderTasks(taskViewport, projects, project.title)
@@ -163,8 +163,21 @@ import { deleteTask } from "."
                 projectElement.style.cursor = "default";
             })
 
+            projectDeleteButton.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const index = projects.indexOf(project)
+                projects.splice(index, 1)
+                renderProjects(sidebar, projects, taskViewport)
+                renderTasks(taskViewport, projects, project.title)
+                wipeTitle()
+            })
+
             projectElement.style.borderBottom = "2px solid black"
             projectElement.style.fontWeight = "200"
             sidebar.appendChild(projectElement)
+
+            projectDeleteButton.style.display = "inline"
+            projectDeleteButton.style.margin = "15px"
+            projectElement.appendChild(projectDeleteButton)
         });
     }

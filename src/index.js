@@ -4,7 +4,7 @@ import './forms.css';
 import {createTask, createProjectArray, lightDarkButton, renderProjects, addTaskToProject, updateProjectSelect, renderTasks, changeCursor, updateTitle} from "./toDo.js"
 
 //array of projects
-const projects = []
+let projects = []
 
 //js for task items
     const newTaskButton = document.getElementById("new-task-button")
@@ -56,10 +56,18 @@ const projects = []
     screen. In the render function, event listeners are added so that the tasks render on click */
     newProjectForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        projects.push(createProjectArray(newProjectForm))
-        newProjectForm.reset()
-        newProjectDialog.close()
-        renderProjects(sidebar, projects, taskViewport)
+        let newProjectObject = createProjectArray(newProjectForm)
+        const alreadyExists = projects.some((project)=> project.title === newProjectObject.title)
+        
+        if (!alreadyExists) {
+            projects.push(newProjectObject)
+            newProjectForm.reset()
+            newProjectDialog.close()
+            renderProjects(sidebar, projects, taskViewport)
+        }
+        else {
+            alert("Project already exists")
+        }
     })
 
 //sidebar js
