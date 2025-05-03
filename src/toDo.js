@@ -15,8 +15,8 @@ import { deleteTask, projects } from "."
 
         if(realDueDate < today) {
             alert("Invalid date")
+            return
         }
-
         return {title, description, dueDate, priority, parentProject}
     }
 
